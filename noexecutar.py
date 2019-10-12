@@ -1,7 +1,7 @@
 import csv
 import pandas
 
-orenetes = pandas.read_csv('orenetes.csv',sep='\t',error_bad_lines=False,)
+orenetes = pandas.read_csv('orenetes.csv',sep='\t',error_bad_lines=False)
 
 import plotly.graph_objects as go
 fig = go.Figure(go.Densitymapbox(lat=orenetes.decimalLatitude, lon=orenetes.decimalLongitude, z=orenetes.individualCount, radius=30))
