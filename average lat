@@ -1,0 +1,24 @@
+import csv
+import pandas as pd
+import numpy as np
+
+average = []
+
+df = pd.read_csv("bo.csv",error_bad_lines=False)
+
+y=2000
+while y<2020:
+	j = 1
+	while np.isnan(df[j,'years']) == False:
+		while df[j,'year'] == y:
+			a = []
+			a = df['decimalLatitude'].tolist()
+			sumofa = 0
+			for i in range(0,len(a)):
+				if np.isnan(a[i]):
+					a[i] = 0
+				sumofa += abs(a[i])
+			average[y-2000] = sumofa/len(a)
+			j+=1
+	print(y, average[y])	
+	y+=1
