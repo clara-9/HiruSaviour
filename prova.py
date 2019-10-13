@@ -1,14 +1,16 @@
 import csv
 import pandas
-import requests
-import json
 
-result = pandas.read_csv('llistaespecies.csv',sep='\t')
-phylum=requests.get("http://api.gbif.org/v1/occurrence/search#Aves")
-print(phylum.json())
+gener = pandas.read_csv('bo.csv',sep=',',error_bad_lines=False,low_memory=False).query("year>1995")
 
-#sespec=result.loc[: , "scientificName"] #sespec[0] retorna el nom de la especie com a string
-#i = 0
-#for row in result:
-#	print(sespec[i])
-#	i += 1
+import plotly.express as px
+fig = px.scatter_geo(gener, lat="decimalLatitude", lon="decimalLongitude",
+                     animation_frame="month", color="year", projection = "natural earth")
+      
+fig.show()
+
+
+
+
+
+
